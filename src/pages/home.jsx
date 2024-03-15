@@ -1,75 +1,109 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from '../assets/perfil.jpg'
 import Tail from '../assets/Tailwind.png'
 import Boot from '../assets/Bootstrap.png'
 import Fire from '../assets/Firebase.png'
 import Lol from '../assets/lol.png'
 import Mini from '../assets/miniatura.png'
+import Hotmail from '../assets/outlook.png'
+import Dev from '../assets/dev.png'
 
 function Home() {
 
-    const [darkMode, setDarkMode] = useState(false);
+    
+    const [theme, setTheme] = useState(() => {
+        if(window.matchMedia("(prefers-color-scheme: dark)").matches){
+            return "dark";
+        }
+        return "light";
+    })
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
+    // CAMBIAR MODO DARK / LIGHT
+    useEffect(()=> {
+        if (theme === "dark") {
+            document.querySelector('html').classList.add('dark')
+        } else {
+            document.querySelector('html').classList.remove('dark')
+        }
+    }, [theme])
+
+    const handleChangeTheme = () => {
+        setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
+    }
+
+    const onChange = (value) => {
+        setCaptchaValue(value)
+    }
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const [showErrorAlert, setShowErrorAlert] = useState(false);
 
-    const handleEnviarClick = () => {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        if (!name || !email || !message) {
-            setShowErrorAlert(true);
-            setShowSuccessAlert(false);
-            setTimeout(() => setShowErrorAlert(false), 3000); // Ocultar la alerta de éxito después de 3 segundos
-          } else {
-            setShowSuccessAlert(true);
-            setShowErrorAlert(false);
-            // Puedes resetear el formulario si lo deseas
-            // document.getElementById('contactForm').reset();
-            setTimeout(() => setShowSuccessAlert(false), 3000); // Ocultar la alerta de éxito después de 3 segundos
-          }
-      };
+    // const [email, setEmail] = useState('');
+    // const handleEnviarClick = () => {
+    //     const name = document.getElementById('name').value;
+    //     const email = document.getElementById('email').value;
+    //     const message = document.getElementById('message').value;
+    //     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    //     if (!name || !isEmailValid || !message) {
+    //         setShowErrorAlert(true);
+    //         setShowSuccessAlert(false);
+    //         setTimeout(() => setShowErrorAlert(false), 3000); // Ocultar la alerta de éxito después de 3 segundos
+    //       } else {
+    //         setShowSuccessAlert(true);
+    //         setShowErrorAlert(false);
+    //         // Puedes resetear el formulario si lo deseas
+    //         // document.getElementById('contactForm').reset();
+    //         setTimeout(() => setShowSuccessAlert(false), 3000); // Ocultar la alerta de éxito después de 3 segundos
+    //       }
+          
+    //   };
     
   return (
 
     // BARRA DE NAVEGACION
 
-    <section className={`h-screen bg-slate-100 dark:bg-black ${darkMode ? 'dark' : ''}`}>
+    <section className="h-screen bg-slate-100 dark:bg-black">
         
-        <div className="fixed z-10 bg-slate-100 dark:bg-black lg:px-36 xl:px-44 2xl:px-96 flex flex-row w-full mx-auto justify-center md:justify-between items-center py-4 animate-fade-down" >
-        
-            <button class="hover:scale-110 hover:text-zinc-500 dark:hover:text-zinc-300 dark:text-white" onClick={toggleDarkMode}>
-                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.75C17.5858 2.75 17.25 2.41421 17.25 2C17.25 1.58579 17.5858 1.25 18 1.25H22C22.3034 1.25 22.5768 1.43273 22.6929 1.71299C22.809 1.99324 22.7449 2.31583 22.5304 2.53033L19.8107 5.25H22C22.4142 5.25 22.75 5.58579 22.75 6C22.75 6.41421 22.4142 6.75 22 6.75H18C17.6967 6.75 17.4232 6.56727 17.3071 6.28701C17.191 6.00676 17.2552 5.68417 17.4697 5.46967L20.1894 2.75H18ZM13.5 8.75C13.0858 8.75 12.75 8.41421 12.75 8C12.75 7.58579 13.0858 7.25 13.5 7.25H16.5C16.8034 7.25 17.0768 7.43273 17.1929 7.71299C17.309 7.99324 17.2449 8.31583 17.0304 8.53033L15.3107 10.25H16.5C16.9142 10.25 17.25 10.5858 17.25 11C17.25 11.4142 16.9142 11.75 16.5 11.75H13.5C13.1967 11.75 12.9232 11.5673 12.8071 11.287C12.691 11.0068 12.7552 10.6842 12.9697 10.4697L14.6894 8.75H13.5Z" fill="#000000"></path> <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#000000"></path> </g></svg>
-                {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
-            </button>
-                    
-            <div className="hidden lg:flex text-base gap-10 text-black font-semibold">
-                <a href="#inicio" className="hover:text-green-500 hover:scale-110">Inicio<span className="text-green-500">/&gt;</span></a>
-                <a href="#habilidades" className="hover:text-green-500 hover:scale-110">Habilidades<span className="text-green-500">/&gt;</span></a>            
-                <a href="#proyectos" className="hover:text-green-500 hover:scale-110">Proyectos<span className="text-green-500">/&gt;</span></a>  
-                <a href="#contacto" className="hover:text-green-500 hover:scale-110">Contacto<span className="text-green-500">/&gt;</span></a>
+        <div className="fixed z-10 bg-slate-100 dark:bg-black py-4 lg:px-36 2xl:px-96 flex flex-row w-screen mx-auto items-center animate-fade-down justify-center lg:justify-between">
+
+            <div className="w-[90%] md:w-full flex justify-between animate-fade-down">
+
+                <div className=" lg:hidden ">
+                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex items-center animate-fade-down" tabIndex="0">
+                    <svg width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="style=fill"> <g id="menu-hotdog"> <path id="Subtract" fillRule="evenodd" clipRule="evenodd" d="M7.25 1.25C3.93629 1.25 1.25 3.93629 1.25 7.25V16.75C1.25 20.0637 3.93629 22.75 7.25 22.75H16.75C20.0637 22.75 22.75 20.0637 22.75 16.75V7.25C22.75 3.93629 20.0637 1.25 16.75 1.25H7.25ZM6.69231 7C6.44803 7 6.25 7.33579 6.25 7.75C6.25 8.16421 6.44803 8.5 6.69231 8.5H17.3077C17.552 8.5 17.75 8.16421 17.75 7.75C17.75 7.33579 17.552 7 17.3077 7H6.69231ZM4.25 12.25C4.25 11.8358 4.51691 11.5 4.84615 11.5H19.1538C19.4831 11.5 19.75 11.8358 19.75 12.25C19.75 12.6642 19.4831 13 19.1538 13H4.84615C4.51691 13 4.25 12.6642 4.25 12.25ZM6.69231 16C6.44803 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.44803 17.5 6.69231 17.5H17.3077C17.552 17.5 17.75 17.1642 17.75 16.75C17.75 16.3358 17.552 16 17.3077 16H6.69231Z" fill="#169C5B"></path> </g> </g> </g></svg>
+                    </button>
+
+                    {isMobileMenuOpen && (
+                        <div className="absolute z-50 flex flex-col w-1/3 sm:w-1/4 justify-start text-white font-bold mt-3 bg-gray-700 rounded-md shadow-lg animate-fade-down">
+                            <a tabIndex="-1" href="#inicio" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Inicio</a>
+                            <a tabIndex="-1" href="#habilidades" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Habilidades</a>
+                            <a tabIndex="-1" href="#proyectos" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Proyectos</a>
+                            <a tabIndex="-1" href="#contacto" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Contacto</a>
+                        </div>
+                    )}
+                </div>
+
+                <img src={Dev} alt={Dev} className="w-10 h-10 scale-95" />
+                         
+            <div className="hidden lg:flex text-base gap-10 text-black dark:text-white font-semibold items-center">
+                <a href="#inicio" className="hover:text-green-500 hover:scale-110">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <a href="#habilidades" className="hover:text-green-500 hover:scale-110">Habilidades<span className="text-green-500 dark:text-green-300">/&gt;</span></a>            
+                <a href="#proyectos" className="hover:text-green-500 hover:scale-110">Proyectos<span className="text-green-500 dark:text-green-300">/&gt;</span></a>  
+                <a href="#contacto" className="hover:text-green-500 hover:scale-110">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <button className="flex hover:scale-110 md:hover:scale-150 focus:outline-none  rounded-lg" onClick={handleChangeTheme}>
+                <svg width="32px" height="32px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#169C5B"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>dark-mode</title> <g id="Layer_2" data-name="Layer 2"> <g id="Icons"> <g> <rect width="48" height="48" fill="none"></rect> <g> <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"></path> <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"></path> </g> </g> </g> </g> </g></svg>
+                </button>
             </div>
 
-            <div className="absolute lg:hidden w-screen ml-8 sm:w-5/6 ">
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex items-center animate-fade-down" tabIndex="0">
-                <svg width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="style=fill"> <g id="menu-hotdog"> <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M7.25 1.25C3.93629 1.25 1.25 3.93629 1.25 7.25V16.75C1.25 20.0637 3.93629 22.75 7.25 22.75H16.75C20.0637 22.75 22.75 20.0637 22.75 16.75V7.25C22.75 3.93629 20.0637 1.25 16.75 1.25H7.25ZM6.69231 7C6.44803 7 6.25 7.33579 6.25 7.75C6.25 8.16421 6.44803 8.5 6.69231 8.5H17.3077C17.552 8.5 17.75 8.16421 17.75 7.75C17.75 7.33579 17.552 7 17.3077 7H6.69231ZM4.25 12.25C4.25 11.8358 4.51691 11.5 4.84615 11.5H19.1538C19.4831 11.5 19.75 11.8358 19.75 12.25C19.75 12.6642 19.4831 13 19.1538 13H4.84615C4.51691 13 4.25 12.6642 4.25 12.25ZM6.69231 16C6.44803 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.44803 17.5 6.69231 17.5H17.3077C17.552 17.5 17.75 17.1642 17.75 16.75C17.75 16.3358 17.552 16 17.3077 16H6.69231Z" fill="#118E00"></path> </g> </g> </g></svg>
+            
+
+                <button className="md:hidden flex hover:scale-125 md:hover:scale-150 focus:outline-none rounded-lg" onClick={handleChangeTheme}>
+                <svg width="32px" height="32px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#169C5B"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>dark-mode</title> <g id="Layer_2" data-name="Layer 2"> <g id="Icons"> <g> <rect width="48" height="48" fill="none"></rect> <g> <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"></path> <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"></path> </g> </g> </g> </g> </g></svg>
                 </button>
 
-                {isMobileMenuOpen && (
-                    <div className="absolute z-50 flex flex-col w-1/3 sm:w-1/4 justify-start text-white font-bold mt-3 bg-gray-700 rounded-md shadow-lg animate-fade-down">
-                        <a tabIndex="-1" href="#inicio" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Inicio</a>
-                        <a tabIndex="-1" href="#habilidades" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Habilidades</a>
-                        <a tabIndex="-1" href="#proyectos" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Proyectos</a>
-                        <a tabIndex="-1" href="#contacto" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Contacto</a>
-                    </div>
-                )}
             </div>
 
         </div>
@@ -82,19 +116,19 @@ function Home() {
                 <h2 className="text-xl md:text-2xl font-bold tracking-tight text-emerald-600 xl:text-3xl mt-4">
                     JOSE SANCHEZ
                 </h2>
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight white-black xl:text-3xl mt-4">
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mt-4">
                     DESARROLLADOR WEB
                 </h3>
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black xl:text-3xl mb-4">
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4">
                     FRONT-END JR
                 </h3>
-                <p className="block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 font-semibold">Comenzando en el campo del desarrollo web, estoy realizando proyectos y estudiando mas lenguajes, he aprendido HTML5, CSS3, Javascript y framework ReactJS, librerias como Bootstrap y Tailwind.</p>
+                <p className="block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Comenzando en el campo del desarrollo web, estoy realizando proyectos y estudiando mas lenguajes, he aprendido HTML5, CSS3, Javascript y framework ReactJS, librerias como Bootstrap y Tailwind.</p>
 
                 <div className="mt-6 sm:-mx-2 mx-20">
                     
                     <a href="https://api.whatsapp.com/send?phone=51993671271" target="_blank">
-                    <button className="inline-flex items-center justify-center px-4 text-sm py-1 text-white bg-gray-700 hover:bg-black rounded-lg sm:w-auto sm:mx-2 transition-transform hover:translate-y-2 ease-in-out">
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="WhatsApp" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#25d366" stroke="#ffffff" stroke-width="26" d="M123 393l14-65a138 138 0 1150 47z"></path><path fill="#ffffff" d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"></path></g></svg>
+                    <button className="inline-flex items-center justify-center px-4 text-sm py-1 text-white bg-gray-700 hover:bg-gray-800 rounded-lg sm:w-auto sm:mx-2 transition-transform hover:translate-y-2 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="WhatsApp" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#25d366" stroke="#ffffff" strokeWidth="26" d="M123 393l14-65a138 138 0 1150 47z"></path><path fill="#ffffff" d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"></path></g></svg>
                         <span className="mx-2">
                             Conversemos
                         </span>
@@ -102,8 +136,8 @@ function Home() {
                     </a>
 
                     <a href="https://drive.google.com/file/d/1a4u04_tw4jVWAFn7zix19E2eHE7RYIQH/view?usp=sharing" target="_blank">
-                    <button className="inline-flex items-center justify-center px-6 text-sm py-1 mt-4 text-white bg-blue-600 hover:bg-blue-900 rounded-lg sm:w-auto sm:mx-2 sm:mt-0 transition-transform hover:translate-y-2 ease-in-out">
-                    <svg fill="#c33c3c" width="32px" height="32px" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" stroke="#c33c3c"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="m28.6 11.4h5.1a1.11 1.11 0 0 0 1.1-1.1 1.32 1.32 0 0 0 -.3-.8l-7.2-7.1a.89.89 0 0 0 -.7-.3 1.11 1.11 0 0 0 -1.1 1.1v5.1a3.12 3.12 0 0 0 3.1 3.1z"></path> <path d="m49.83 32.45a1.43 1.43 0 0 0 -1.39-1.45h-12a1.43 1.43 0 0 0 -1.44 1.44v1.44a1.43 1.43 0 0 0 1.4 1.44h6.14l-11 11a1.42 1.42 0 0 0 0 2l1 1a1.54 1.54 0 0 0 1.09.45 1.32 1.32 0 0 0 .94-.38l11-11v6a1.43 1.43 0 0 0 1.43 1.44h1.53a1.43 1.43 0 0 0 1.47-1.4z"></path> <path d="m18.35 20.68h-1.46v4.93h1.46a1.56 1.56 0 0 0 1.56-1.1 3.93 3.93 0 0 0 .24-1.44 3.61 3.61 0 0 0 -.36-1.77 1.53 1.53 0 0 0 -1.44-.62z"></path> <path d="m11.29 20.93a1.27 1.27 0 0 0 -.84-.25h-1.45v2.23h1.46a1.18 1.18 0 0 0 .84-.28 1.09 1.09 0 0 0 .3-.86 1 1 0 0 0 -.33-.84z"></path> <path d="m33.24 16h-7.84a4.67 4.67 0 0 1 -4.7-4.6v-7.8a1.42 1.42 0 0 0 -1.34-1.5h-12.56a4.67 4.67 0 0 0 -4.7 4.6v29.4a4.6 4.6 0 0 0 4.62 4.6h17.88v-.1a15.92 15.92 0 0 1 10.2-14.9v-8.1a1.58 1.58 0 0 0 -1.56-1.6zm-20.75 7.65a2.93 2.93 0 0 1 -1.89.56h-1.6v2.71h-1.51v-7.55h3.24a2.64 2.64 0 0 1 1.76.63 2.3 2.3 0 0 1 .66 1.8 2.35 2.35 0 0 1 -.66 1.85zm8.66 1.9a2.73 2.73 0 0 1 -2.53 1.45h-3.26v-7.63h3.26a3.85 3.85 0 0 1 1.17.17 2.49 2.49 0 0 1 1.28.95 3.43 3.43 0 0 1 .54 1.22 5.6 5.6 0 0 1 .14 1.29 5 5 0 0 1 -.6 2.55zm7.92-4.84h-3.81v1.74h3.34v1.31h-3.34v3.16h-1.57v-7.54h5.38z"></path> </g> </g></svg>
+                    <button className="inline-flex items-center justify-center px-6 text-sm py-1 mt-4 text-white bg-green-600 hover:bg-green-700 rounded-lg sm:w-auto sm:mx-2 sm:mt-0 transition-transform hover:translate-y-2 ease-in-out">
+                    <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.1333C2 8.58633 2 6.81283 2.69029 5.45806C3.29749 4.26637 4.26637 3.29749 5.45806 2.69029C6.81283 2 8.58633 2 12.1333 2H19.8667C23.4137 2 25.1872 2 26.5419 2.69029C27.7336 3.29749 28.7025 4.26637 29.3097 5.45806C30 6.81283 30 8.58633 30 12.1333V19.8667C30 23.4137 30 25.1872 29.3097 26.5419C28.7025 27.7336 27.7336 28.7025 26.5419 29.3097C25.1872 30 23.4137 30 19.8667 30H12.1333C8.58633 30 6.81283 30 5.45806 29.3097C4.26637 28.7025 3.29749 27.7336 2.69029 26.5419C2 25.1872 2 23.4137 2 19.8667V12.1333Z" fill="#B30B00"></path> <path d="M24.0401 17.8976C22.7327 16.464 19.1701 17.0912 18.3094 17.1808C17.0891 15.9264 16.2284 14.504 15.8798 13.9664C16.3156 12.6224 16.6642 11.1104 16.6642 9.6768C16.6642 8.3328 16.1413 7 14.7576 7C14.2347 7 13.7989 7.2688 13.5374 7.7168C12.9273 8.792 13.1887 10.9312 14.1475 13.16C13.6245 14.7728 12.753 17.1808 11.7179 19.0512C10.3234 19.5888 7.28369 21.0112 7.02221 22.624C6.93505 23.072 7.10937 23.6096 7.45801 23.8784C7.80665 24.2368 8.24244 24.3264 8.67824 24.3264C10.4977 24.3264 12.328 21.7392 13.6354 19.4096C14.6814 19.0512 16.3265 18.5136 17.9825 18.2448C19.8891 20.0368 21.6323 20.2944 22.5039 20.2944C23.7242 20.2944 24.16 19.7568 24.3234 19.3088C24.5522 18.8832 24.3887 18.256 24.0401 17.8976ZM22.8199 18.7936C22.7327 19.152 22.2969 19.5104 21.5125 19.3312C20.5537 19.0624 19.693 18.6144 18.9958 17.9872C19.6059 17.8976 21.0767 17.7184 22.1226 17.8976C22.4712 17.9872 22.907 18.256 22.8199 18.7936ZM14.3872 8.0752C14.4744 7.896 14.6487 7.8064 14.823 7.8064C15.2588 7.8064 15.3459 8.344 15.3459 8.792C15.2588 9.8672 15.0845 11.0208 14.7358 12.0064C14.0386 10.0464 14.1257 8.6128 14.3872 8.0752ZM14.3 18.1664C14.7358 17.36 15.2588 15.848 15.4331 15.3104C15.8689 16.1168 16.6533 17.0128 17.002 17.4496C17.0891 17.3712 15.5203 17.7184 14.3 18.1664ZM11.3475 20.2272C10.1382 22.1872 9.00509 23.4416 8.30781 23.4416C8.22065 23.4416 8.04634 23.4416 7.95918 23.352C7.87202 23.1728 7.78486 22.9936 7.87202 22.8144C7.95918 22.0976 9.35373 21.112 11.3475 20.2272Z" fill="white"></path> </g></svg>
                     <span className="mx-2">
                          Curriculum
                     </span>
@@ -122,7 +156,7 @@ function Home() {
     
         <div className="h-[20rem] flex flex-col items-center pt-4 2xl:pt-8 bg-slate-100 dark:bg-black" >
             <a href="#habilidades" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center" >
-                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
         </div>
 
@@ -131,60 +165,60 @@ function Home() {
     <div className="bg-slate-100 dark:bg-black" id="habilidades">
         <div className="h-screen md:w-full">
             <div className="lg:w-5/6 xl:w-3/4 h-[100%] sm:h-[80%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-20 sm:gap-28 xl:gap-32 ">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black xl:text-3xl">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">
                     LENGUAJES, LIBRERIAS Y FRAMEWORKS
                 </h3>
                 <div className="grid grid-cols-2 sm:grid sm:grid-cols-4 lg:flex gap-6 sm:gap-8 lg:gap-12 justify-center justify-items-center w-full sm:w-5/6 lg:w-full mx-auto">
                     
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://developer.mozilla.org/es/docs/Glossary/HTML5" target="_autoblank">
                         <div className="flex justify-center mb-2">
-                        <svg height="64px" width="64px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
-                        </div><p className="text-zinc-500 font-semibold justify-center">HTML5</p>
+                        <svg height="64px" width="64px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
+                        </div><p className="text-zinc-900 dark:text-zinc-100 font-semibold justify-center">HTML5</p>
                         </a>
                     </div>
 
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_autoblank">
                         <div className="flex justify-center mb-2">
-                        <svg height="64px" width="64px" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#264de4" d="M72 460L30 0h451l-41 460-184 52"></path><path fill="#2965f1" d="M256 37V472l149-41 35-394"></path><path fill="#ebebeb" d="m114 94h142v56H119m5 58h132v57H129m3 28h56l4 45 64 17v59L139 382"></path><path fill="#ffffff" d="m256 208v57h69l-7 73-62 17v59l115-32 26-288H256v56h80l-5.5 58Z"></path></g></svg>
+                        <svg height="64px" width="64px" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#264de4" d="M72 460L30 0h451l-41 460-184 52"></path><path fill="#2965f1" d="M256 37V472l149-41 35-394"></path><path fill="#ebebeb" d="m114 94h142v56H119m5 58h132v57H129m3 28h56l4 45 64 17v59L139 382"></path><path fill="#ffffff" d="m256 208v57h69l-7 73-62 17v59l115-32 26-288H256v56h80l-5.5 58Z"></path></g></svg>
                         </div>
-                        <p className="text-zinc-500 font-semibold justify-center">CSS3</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold justify-center">CSS3</p></a>
                     </div>
 
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_autoblank">
                         <div className="flex justify-center mb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
                         </div>
-                        <p className="text-zinc-500 font-semibold justify-center">Javascript</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold justify-center">Javascript</p></a>
                     </div>
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://react.dev/" target="_autoblank">
                         <div className="flex justify-center mb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" stroke-width="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" strokeWidth="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
                         </div>
-                        <p className="text-zinc-500 font-semibold justify-center">ReactJS</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold justify-center">ReactJS</p></a>
                     </div>
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://tailwindcss.com/" target="_autoblank">
                         <div className="flex w-16 h-16 mx-auto mb-2">
                         <img src={Tail} alt={Tail} />
                         </div>
-                        <p className="text-zinc-500 font-semibold mx-auto">Tailwind</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold mx-auto">Tailwind</p></a>
                     </div>
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://getbootstrap.com/" target="_autoblank">
                         <div className="flex w-16 h-16 mx-auto mb-2">
                         <img src={Boot} alt={Boot} />
                         </div>
-                        <p className="text-zinc-500 font-semibold mx-auto">Bootstrap</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold mx-auto">Bootstrap</p></a>
                     </div>
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://firebase.google.com/" target="_autoblank">
                         <div className="flex  w-16 h-16 mx-auto mb-2">
                         <img src={Fire} alt={Fire} />
                         </div>
-                        <p className="text-zinc-500 font-semibold mx-auto">Firebase</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold mx-auto">Firebase</p></a>
                     </div>
                     <div className="flex flex-col w-28 hover:animate-jump"><a href="https://github.com/" target="_autoblank">
                         <div className="flex justify-center mb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Git" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#ffffff"></rect><path fill="#f05133" d="M440.8 238.9L273 71.2a24.7 24.7 0 00-35 0l-34.8 34.9l44.2 44.1a29.4 29.4 0 0137.2 37.5l42.5 42.5a29.4 29.4 0 11-17.6 16.6l-39.7-39.7v104.5a29.4 29.4 0 11-24.2-.9V205.3a29.4 29.4 0 01-16-38.6l-43.5-43.5l-115 115a24.7 24.7 0 000 34.9L239 440.8a24.7 24.7 0 0035 0l166.9-167a24.7 24.7 0 000-34.9"></path></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Git" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#ffffff"></rect><path fill="#f05133" d="M440.8 238.9L273 71.2a24.7 24.7 0 00-35 0l-34.8 34.9l44.2 44.1a29.4 29.4 0 0137.2 37.5l42.5 42.5a29.4 29.4 0 11-17.6 16.6l-39.7-39.7v104.5a29.4 29.4 0 11-24.2-.9V205.3a29.4 29.4 0 01-16-38.6l-43.5-43.5l-115 115a24.7 24.7 0 000 34.9L239 440.8a24.7 24.7 0 0035 0l166.9-167a24.7 24.7 0 000-34.9"></path></g></svg>
                         </div>
-                        <p className="text-zinc-500 font-semibold">GitHub</p></a>
+                        <p className="text-zinc-900 dark:text-zinc-100 font-semibold">GitHub</p></a>
                     </div>
                 </div>
             </div>
@@ -193,7 +227,7 @@ function Home() {
 
     <div className="h-[20rem] -mt-16 flex flex-col items-center bg-slate-100 dark:bg-black" >
         <a href="#proyectos" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
-            <svg className="w-6 h-6 text-emerald-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
     </div>
 
@@ -205,7 +239,7 @@ function Home() {
     <div className="flex flex-col h-screen w-2/3 lg:w-1/2 mx-auto justify-center gap-10 xl:gap-20">
 
         <div className="flex justify-center">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black xl:text-3xl">PROYECTOS</h1>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-20 sm:w-5/6 xl:w-4/5 mx-auto">
@@ -240,7 +274,7 @@ function Home() {
                     <a target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed">
                         Demostracion
                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
                     </a>
                 </div>
@@ -251,92 +285,59 @@ function Home() {
 
         <div className="h-[20rem] -mt-16 flex flex-col items-center backdrop-blur-lg bg-slate-100 dark:bg-black" >
             <a href="#contacto" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
         </div>
 
     {/* CONTACTO */}
 
-<div className="flex bg-slate-100 h-screen items-center" id="contacto">
-	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] mx-auto px-6 py-4 rounded-2xl shadow-lg bg-slate-300">
-		<form className="space-y-6">
-            <div className="text-center text-2xl sm:text-3xl 2xl:text-4xl font-bold tracking-tight text-black xl:text-3xl py-1 sm:py-6">
-                <h3>CONTACTO</h3>
-            </div>
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div>
-                    <label htmlFor="name"></label>
-                    <input className="p-3 text-lg rounded-xl bg-gray-100 w-full" placeholder="Nombre completo" type="text" id="name" required/>
-                </div>
+<div className="flex bg-slate-100 dark:bg-black h-screen items-center" id="contacto">
+	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-28 mx-auto px-6 py-4 rounded-2xl">
+        <div className="text-center text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl sm:py-1 2xl:py-6">
+            <h3>CONTACTO</h3>
+        </div>
+        <div className="grid grid-cols-2 gap-y-10 sm:flex justify-between">
+            <a href="mailto:josesancheztrujillo7@gmail.com" target="_autoblank" className="text-center hover:animate-rotate-y">
+                <button>
+                    <svg width="64px" height="64px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 11.9556C2 8.47078 2 6.7284 2.67818 5.39739C3.27473 4.22661 4.22661 3.27473 5.39739 2.67818C6.7284 2 8.47078 2 11.9556 2H20.0444C23.5292 2 25.2716 2 26.6026 2.67818C27.7734 3.27473 28.7253 4.22661 29.3218 5.39739C30 6.7284 30 8.47078 30 11.9556V20.0444C30 23.5292 30 25.2716 29.3218 26.6026C28.7253 27.7734 27.7734 28.7253 26.6026 29.3218C25.2716 30 23.5292 30 20.0444 30H11.9556C8.47078 30 6.7284 30 5.39739 29.3218C4.22661 28.7253 3.27473 27.7734 2.67818 26.6026C2 25.2716 2 23.5292 2 20.0444V11.9556Z" fill="white"></path> <path d="M22.0515 8.52295L16.0644 13.1954L9.94043 8.52295V8.52421L9.94783 8.53053V15.0732L15.9954 19.8466L22.0515 15.2575V8.52295Z" fill="#EA4335"></path> <path d="M23.6231 7.38639L22.0508 8.52292V15.2575L26.9983 11.459V9.17074C26.9983 9.17074 26.3978 5.90258 23.6231 7.38639Z" fill="#FBBC05"></path> <path d="M22.0508 15.2575V23.9924H25.8428C25.8428 23.9924 26.9219 23.8813 26.9995 22.6513V11.459L22.0508 15.2575Z" fill="#34A853"></path> <path d="M9.94811 24.0001V15.0732L9.94043 15.0669L9.94811 24.0001Z" fill="#C5221F"></path> <path d="M9.94014 8.52404L8.37646 7.39382C5.60179 5.91001 5 9.17692 5 9.17692V11.4651L9.94014 15.0667V8.52404Z" fill="#C5221F"></path> <path d="M9.94043 8.52441V15.0671L9.94811 15.0734V8.53073L9.94043 8.52441Z" fill="#C5221F"></path> <path d="M5 11.4668V22.6591C5.07646 23.8904 6.15673 24.0003 6.15673 24.0003H9.94877L9.94014 15.0671L5 11.4668Z" fill="#4285F4"></path> </g></svg>
+                </button>
+                <p className="text-black dark:text-white font-semibold">Gmail</p>
+            </a>
+            
+            <a href="mailto:josesancheztrujillo90@hotmail.com" target="_autoblank" className="text-center hover:animate-rotate-y">
+                <button className="">
+                    <img src={Hotmail} alt={Hotmail} className="w-16" />
+                </button>
+                <p className="text-black dark:text-white font-semibold">Hotmail</p>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/josesanchez90/" target="_autoblank" className="text-center hover:animate-rotate-y">
+                <button>
+                    <svg width="64px" height="64px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+                </button>
+                <p className="text-black dark:text-white font-semibold">LinkedIn</p>
+            </a>
 
-                <div>
-					<label className="" htmlFor="email"></label>
-					<input className="p-3 text-lg rounded-xl bg-gray-100 w-full" placeholder="Correo electronico" type="email" id="email" required/>
-				</div>
-			</div>
-
-			<div className="w-full">
-				<label className="" htmlFor="message"></label>
-
-				<textarea className="p-3 text-lg rounded-xl bg-gray-100 w-full" placeholder="Por favor, explique detalladamente el propósito de este mensaje. Me comunicaré contigo lo antes posible" rows="8" id="message" required></textarea>
-			</div>
-
-        {showSuccessAlert && (
-        <div className="fixed inset-y-[83%] sm:fixed sm:inset-6 sm:flex sm:items-end pointer-events-none p-4 sm:justify-between ">
-            <div class="flex w-full max-w-56 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <div class="flex items-center justify-center w-12 bg-emerald-500">
-                    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                    </svg>
-                </div>
-
-                <div class="px-4 py-2 -mx-3">
-                    <div class="mx-3">
-                        <span class="font-semibold text-emerald-500 dark:text-emerald-400">Éxito</span>
-                        <p class="text-sm text-gray-600 dark:text-gray-200">Mensaje enviado!</p>
-                    </div>
-                </div>
-            </div>
+            <a href="https://github.com/JoseSanchez90" target="_autoblank" className="text-center hover:animate-rotate-y">
+                <button>
+                <svg width="64px" height="64px" viewBox="0 -0.5 24 24" id="meteor-icon-kit__regular-github" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.2047 0.00001C6.56031 -0.005731 1.74628 4.08615 0.842541 9.6577C-0.061195 15.2293 3.2126 20.6331 8.56941 22.4118C9.14823 22.5177 9.35294 22.1577 9.35294 21.8541C9.35294 21.5506 9.35294 20.8588 9.35294 19.8988C6.14117 20.5977 5.46353 18.3529 5.46353 18.3529C5.25046 17.6572 4.79779 17.0595 4.18588 16.6659C3.14823 15.96 4.27059 15.96 4.27059 15.96C5.00761 16.0641 5.65578 16.5014 6.02823 17.1459C6.34368 17.7179 6.87393 18.1406 7.50179 18.3208C8.12965 18.5009 8.8034 18.4236 9.37411 18.1059C9.41842 17.5252 9.66876 16.9794 10.08 16.5671C7.5247 16.2777 4.84235 15.2894 4.84235 10.92C4.82481 9.7786 5.24688 8.67412 6.02117 7.8353C5.67632 6.84285 5.71662 5.7571 6.13412 4.79295C6.13412 4.79295 7.10117 4.48236 9.29647 5.97177C11.1816 5.45419 13.1713 5.45419 15.0565 5.97177C17.2518 4.48236 18.2118 4.79295 18.2118 4.79295C18.6351 5.74689 18.6854 6.82486 18.3529 7.81412C19.1272 8.65294 19.5493 9.7574 19.5318 10.8988C19.5318 15.3177 16.8424 16.2847 14.28 16.5459C14.8359 17.1047 15.1218 17.8774 15.0635 18.6635C15.0635 20.2024 15.0635 21.4447 15.0635 21.8188C15.0635 22.1929 15.2682 22.4824 15.8541 22.3694C21.1473 20.5447 24.3569 15.1728 23.4554 9.6469C22.5539 4.1211 17.8034 0.04779 12.2047 0.00001z" fill="#758CA3"></path></g></svg>
+                </button>
+                <p className="text-black dark:text-white font-semibold">GitHub</p>
+            </a>
         </div>
 
-        )}
-        {showErrorAlert && (
-        <div className="fixed inset-y-[83%] sm:fixed sm:inset-6 sm:flex sm:items-end pointer-events-none p-4 sm:justify-between ">
-            <div class="flex w-full max-w-60 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <div class="flex items-center justify-center w-12 bg-red-500">
-                    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
-                    </svg>
-                </div>
-
-                <div class="px-4 py-2 -mx-3">
-                    <div class="mx-3">
-                        <span class="font-semibold text-red-500 dark:text-red-400">Error</span>
-                        <p class="text-sm text-gray-600 dark:text-gray-200">
-                            Completa el formulario!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-          )}
-
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				<button type="button" className="w-[50%] rounded-lg btn btn-primary" onClick={handleEnviarClick}>Enviar</button>
-			</div>
-		</form>
 	</div>
 </div>
 
-<footer class="md:h-0">
+<footer className="h-0">
     
-    <div class="flex py-8 md:py-0 md:fixed md:origin-bottom-left md:bottom-6 md:left-10 justify-center items-center text-emerald-500 dark:text-emerald-300 md:-rotate-90">
-        <div class="hidden md:flex bg-emerald-400 w-20 mr-4 h-[1px]">
+    <div className="flex pb-10 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-black">
+        <div className="hidden sm:flex bg-emerald-600 w-20 mr-4 h-[1px]">
         </div>
-            <p class="text-xs sm:text-sm w-52 sm:w-full md:text-left text-center font-extralight"> © Perú, Lima - Jose Sanchez. Todos los derechos reservados.</p>
+            <p className="text-xs sm:text-sm w-52 sm:w-full md:text-left text-center font-extralight"> © Perú, Lima - Jose Sanchez. Todos los derechos reservados.</p>
     </div>
-            <a href="#inicio" class="fixed z-10 origin-bottom-right bottom-5 right-5 justify-center items-center text-emerald-100 dark:text-emerald-300 bg-emerald-400 dark:bg-emerald-600 rounded p-2 hover:scale-110 transition-transform">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.14645 2.14645C7.34171 1.95118 7.65829 1.95118 7.85355 2.14645L11.8536 6.14645C12.0488 6.34171 12.0488 6.65829 11.8536 6.85355C11.6583 7.04882 11.3417 7.04882 11.1464 6.85355L8 3.70711L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 3.70711L3.85355 6.85355C3.65829 7.04882 3.34171 7.04882 3.14645 6.85355C2.95118 6.65829 2.95118 6.34171 3.14645 6.14645L7.14645 2.14645Z" fill="currentColor"></path></svg>
+            <a href="#" className="fixed z-10 origin-bottom-right bottom-5 right-5 justify-center items-center text-emerald-100 dark:text-emerald-300 bg-emerald-400 dark:bg-emerald-600 rounded p-2 hover:scale-110 transition-transform">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-6"><path fillRule="evenodd" clipRule="evenodd" d="M7.14645 2.14645C7.34171 1.95118 7.65829 1.95118 7.85355 2.14645L11.8536 6.14645C12.0488 6.34171 12.0488 6.65829 11.8536 6.85355C11.6583 7.04882 11.3417 7.04882 11.1464 6.85355L8 3.70711L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 3.70711L3.85355 6.85355C3.65829 7.04882 3.34171 7.04882 3.14645 6.85355C2.95118 6.65829 2.95118 6.34171 3.14645 6.14645L7.14645 2.14645Z" fill="currentColor"></path></svg>
             </a>
 </footer>
 

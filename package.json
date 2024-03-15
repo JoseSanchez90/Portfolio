@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^3.1.0",
     "react-router-dom": "^6.22.3",
     "rippleui": "^1.12.1",
     "tailwindcss-animated": "^1.0.1"
