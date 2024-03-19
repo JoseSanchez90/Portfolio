@@ -3,7 +3,6 @@ import Profile from '../assets/perfil.jpg'
 import Tail from '../assets/Tailwind.png'
 import Boot from '../assets/Bootstrap.png'
 import Fire from '../assets/Firebase.png'
-import Lol from '../assets/lol.png'
 import Mini from '../assets/miniatura.png'
 import Hotmail from '../assets/outlook.png'
 import Dev from '../assets/dev.png'
@@ -81,7 +80,7 @@ function Home() {
                             <a tabIndex="-1" href="#inicio" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Inicio</a>
                             <a tabIndex="-1" href="#habilidades" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Habilidades</a>
                             <a tabIndex="-1" href="#proyectos" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Proyectos</a>
-                            <a tabIndex="-1" href="#contacto" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Contacto</a>
+                            <a tabIndex="-1" href="#footer" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Contacto</a>
                         </div>
                     )}
                 </div>
@@ -92,7 +91,7 @@ function Home() {
                 <a href="#inicio" className="hover:text-green-500 hover:scale-110">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
                 <a href="#habilidades" className="hover:text-green-500 hover:scale-110">Habilidades<span className="text-green-500 dark:text-green-300">/&gt;</span></a>            
                 <a href="#proyectos" className="hover:text-green-500 hover:scale-110">Proyectos<span className="text-green-500 dark:text-green-300">/&gt;</span></a>  
-                <a href="#contacto" className="hover:text-green-500 hover:scale-110">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <a href="#footer" className="hover:text-green-500 hover:scale-110">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
                 <button className="flex hover:scale-110 md:hover:scale-150 focus:outline-none  rounded-lg" onClick={handleChangeTheme}>
                 <svg width="32px" height="32px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#169C5B"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>dark-mode</title> <g id="Layer_2" data-name="Layer 2"> <g id="Icons"> <g> <rect width="48" height="48" fill="none"></rect> <g> <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"></path> <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"></path> </g> </g> </g> </g> </g></svg>
                 </button>
@@ -113,16 +112,16 @@ function Home() {
         <div id="inicio" className="container sm:justify-center lg:w-3/4 xl:w-3/4 2xl:w-2/3 h-[90%] xl:h-[90%] flex flex-col md:flex-row items-center pt-16 sm:pt-0 px-10 mx-auto xl:flex-row animate-fade-right sm:gap-10">
             
             <div className="flex flex-col items-center md:items-start">
-                <h2 className="text-xl md:text-2xl font-bold tracking-tight text-emerald-600 xl:text-3xl mt-4">
+                <h2 className="text-lg md:text-2xl font-bold tracking-tight text-emerald-600 xl:text-3xl mt-4">
                     JOSE SANCHEZ
                 </h2>
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mt-4">
+                <h3 className="text-lg md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mt-4">
                     DESARROLLADOR WEB
                 </h3>
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4">
+                <h3 className="text-lg md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4">
                     FRONT-END JR
                 </h3>
-                <p className="block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Comenzando en el campo del desarrollo web, estoy realizando proyectos y estudiando mas lenguajes, he aprendido HTML5, CSS3, Javascript y framework ReactJS, librerias como Bootstrap y Tailwind.</p>
+                <p className="text-sm md:text-lg block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Comenzando en el campo del desarrollo web, estoy realizando proyectos y estudiando mas lenguajes, he aprendido HTML5, CSS3, Javascript y framework ReactJS, librerias como Bootstrap y Tailwind.</p>
 
                 <div className="mt-6 sm:-mx-2 mx-20">
                     
@@ -154,7 +153,7 @@ function Home() {
     </div>
 
     
-        <div className="h-[20rem] flex flex-col items-center pt-4 2xl:pt-8 bg-slate-100 dark:bg-black" >
+        <div className="h-[20rem] flex flex-col items-center bg-slate-100 dark:bg-black" >
             <a href="#habilidades" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center" >
                 <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
@@ -164,7 +163,7 @@ function Home() {
 
     <div className="bg-slate-100 dark:bg-black" id="habilidades">
         <div className="h-screen md:w-full">
-            <div className="lg:w-5/6 xl:w-3/4 h-[100%] sm:h-[80%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-20 sm:gap-28 xl:gap-32 ">
+            <div className="lg:w-5/6 xl:w-3/4 h-[100%] sm:h-[80%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-10 sm:gap-20 xl:gap-20 ">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">
                     LENGUAJES, LIBRERIAS Y FRAMEWORKS
                 </h3>
@@ -225,7 +224,7 @@ function Home() {
         </div>
     </div>
 
-    <div className="h-[20rem] -mt-16 flex flex-col items-center bg-slate-100 dark:bg-black" >
+    <div className="h-[20rem] -mt-20 flex flex-col items-center bg-slate-100 dark:bg-black" >
         <a href="#proyectos" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
             <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
@@ -236,20 +235,20 @@ function Home() {
         {/* PROYECTOS */}
 
 <div className="h-screen bg-slate-100 dark:bg-black" id="proyectos">
-    <div className="flex flex-col h-screen w-2/3 lg:w-1/2 mx-auto justify-center gap-10 xl:gap-20">
+    <div className="flex flex-col h-screen w-2/3 sm:w-5/6 lg:w-1/2 mx-auto justify-center gap-10 xl:gap-10 2xl:gap-16">
 
         <div className="flex justify-center">
             <h1 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-20 sm:w-5/6 xl:w-4/5 mx-auto">
+        <div className="flex sm:w-1/2 xl:w-1/3 mx-auto">
             <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-t-lg">
                     <img className="transform transition-transform hover:scale-110" src={Mini} alt={Mini} />
                 </a>
                 <div className="p-5">
                     <a href="https://kazali-store-blue.vercel.app/" target="_autoblank">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">E-Commerce Gamer</h5>
+                        <h5 className="mb-2 sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">E-Commerce Gamer</h5>
                     </a>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Comercio parte de PC y otros, pensado en el publico Gamer.</p>
                     <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -260,30 +259,12 @@ function Home() {
                     </a>
                 </div>
             </div>
+        </div>  
 
-
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-not-allowed" type="button" disabled>
-                <a type="button" disabled>
-                    <img className="rounded-t-lg cursor-not-allowed" src={Lol} alt={Lol} />
-                </a>
-                <div className="p-5">
-                    <a target="_autoblank">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-500 dark:text-white" disabled>Musica Web</h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-400 dark:text-gray-400">Proyecto pequeño para buscar y escuchar musica personalizada.</p>
-                    <a target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed">
-                        Demostracion
-                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>       
     </div>
 </div>
 
-        <div className="h-[20rem] -mt-16 flex flex-col items-center backdrop-blur-lg bg-slate-100 dark:bg-black" >
+        <div className="h-[20rem] -mt-20 flex flex-col items-center backdrop-blur-lg bg-slate-100 dark:bg-black" >
             <a href="#contacto" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
@@ -292,7 +273,7 @@ function Home() {
     {/* CONTACTO */}
 
 <div className="flex bg-slate-100 dark:bg-black h-screen items-center" id="contacto">
-	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-28 mx-auto px-6 py-4 rounded-2xl">
+	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-16 mx-auto px-6 py-4 rounded-2xl">
         <div className="text-center text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl sm:py-1 2xl:py-6">
             <h3>CONTACTO</h3>
         </div>
@@ -329,7 +310,7 @@ function Home() {
 	</div>
 </div>
 
-<footer className="h-0">
+<footer className="h-0" id="footer">
     
     <div className="flex pb-10 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-black">
         <div className="hidden sm:flex bg-emerald-600 w-20 mr-4 h-[1px]">
