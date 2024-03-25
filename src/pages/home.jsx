@@ -134,9 +134,9 @@ function Home() {
 
     {/* LENGUAJES, LIBRERIAS Y FRAMEWORKS */}
 
-    <div className="bg-slate-100 dark:bg-black" id="habilidades">
-        <div className="h-screen md:w-full">
-            <div className="lg:w-5/6 xl:w-3/4 h-[100%] sm:h-[80%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-10 sm:gap-20 xl:gap-20 ">
+    <div className=" bg-slate-100 dark:bg-black" id="habilidades">
+        <div className="h-screen w-full">
+            <div className="lg:w-5/6 xl:w-3/4 h-[100vh] sm:h-[90%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-10 sm:gap-20 xl:gap-20">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">
                     LENGUAJES, LIBRERIAS Y FRAMEWORKS
                 </h3>
@@ -196,19 +196,12 @@ function Home() {
             </div>
         </div>
     </div>
-
-    <div className="h-[20rem] -mt-20 flex flex-col items-center bg-slate-100 dark:bg-black" >
-        <a href="#proyectos" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
-            <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-        </a>
-    </div>
-
         
 
         {/* PROYECTOS */}
 
 <div className="h-screen w-full bg-slate-100 dark:bg-black" id="proyectos">
-    <div className="flex flex-col h-screen w-3/4 lg:w-11/12 xl:w-2/3 2xl:w-1/2 mx-auto justify-center gap-4 sm:gap-10 lg:gap-6 2xl:gap-10 ">
+    <div className="flex flex-col h-screen w-3/4 lg:w-11/12 xl:w-2/3 2xl:w-1/2 mx-auto justify-center gap-4 sm:gap-10 lg:gap-6 2xl:gap-10 pt-40 sm:pt-0">
 
         <div className="flex justify-center">
             <h1 className="text-2xl sm:text-3xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
@@ -317,7 +310,7 @@ function Home() {
     {/* CONTACTO */}
 
 <div className="flex bg-slate-100 dark:bg-black h-screen items-center" id="contacto">
-	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-16 mx-auto px-6 py-4 rounded-2xl">
+	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-16 mx-auto px-6 py-4 rounded-2xl pt-32 sm:pt-0">
         <div className="text-center text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl sm:py-1 2xl:py-6">
             <h3>CONTACTO</h3>
         </div>
@@ -356,7 +349,7 @@ function Home() {
 
 <footer className="h-0" id="footer">
     
-    <div className="flex pb-10 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-black">
+    <div className="flex py-16 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-black">
         <div className="hidden sm:flex bg-emerald-600 w-20 mr-4 h-[1px]">
         </div>
             <p className="text-xs sm:text-sm w-52 sm:w-full md:text-left text-center font-extralight"> © Perú, Lima - Jose Sanchez. Todos los derechos reservados.</p>
