@@ -61,11 +61,11 @@ function Home() {
                 <img src={Dev} alt={Dev} className="w-10 h-10 scale-95" />
 
             <div className="hidden lg:flex text-base gap-10 text-black dark:text-white font-semibold items-center">
-                <a href="#inicio" className="hover:text-green-500 hover:scale-110">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
-                <a href="#habilidades" className="hover:text-green-500 hover:scale-110">Habilidades<span className="text-green-500 dark:text-green-300">/&gt;</span></a>            
-                <a href="#proyectos" className="hover:text-green-500 hover:scale-110">Proyectos<span className="text-green-500 dark:text-green-300">/&gt;</span></a>  
-                <a href="#footer" className="hover:text-green-500 hover:scale-110">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
-                <button className="flex hover:scale-110 md:hover:scale-150 focus:outline-none  rounded-lg" onClick={handleChangeTheme}>
+                <a href="#inicio" className="hover:text-green-500 hover:scale-110 duration-200">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <a href="#habilidades" className="hover:text-green-500 hover:scale-110 duration-200">Habilidades<span className="text-green-500 dark:text-green-300 hover:duration-300">/&gt;</span></a>            
+                <a href="#proyectos" className="hover:text-green-500 hover:scale-110 duration-200">Proyectos<span className="text-green-500 dark:text-green-300">/&gt;</span></a>  
+                <a href="#footer" className="hover:text-green-500 hover:scale-110 duration-200">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <button className="flex hover:scale-110 md:hover:scale-150 duration-200 focus:outline-none  rounded-lg" onClick={handleChangeTheme}>
                 <svg width="32px" height="32px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#169C5B"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>dark-mode</title> <g id="Layer_2" data-name="Layer 2"> <g id="Icons"> <g> <rect width="48" height="48" fill="none"></rect> <g> <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"></path> <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"></path> </g> </g> </g> </g> </g></svg>
                 </button>
             </div>
@@ -220,13 +220,13 @@ function Home() {
                         
                     <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio parte de PC y otros, pensado en el publico Gamer.</p>
                     <div className="flex gap-4">
-                        <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-110 duration-200">
                             Demo
                             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
                         </a>
-                        <a href="https://github.com/JoseSanchez90/ProyectoFinal" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <a href="https://github.com/JoseSanchez90/ProyectoFinal" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 hover:scale-110 duration-200">
                             GitHub
                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -266,13 +266,13 @@ function Home() {
                         
                     <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio para venta de muebles, plantilla con diseño moderno.</p>
                     <div className="flex gap-4">
-                        <a href="https://furniro-ashy.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <a href="https://furniro-ashy.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-110 duration-200">
                             Demo
                             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
                         </a>
-                        <a href="https://github.com/JoseSanchez90/Ecommerce-02" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <a href="https://github.com/JoseSanchez90/Ecommerce-02" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 hover:scale-110 duration-200">
                             GitHub
                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
