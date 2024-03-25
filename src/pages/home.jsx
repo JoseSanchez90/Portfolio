@@ -4,6 +4,7 @@ import Tail from '../assets/Tailwind.png'
 import Boot from '../assets/Bootstrap.png'
 import Fire from '../assets/Firebase.png'
 import Mini from '../assets/miniatura.png'
+import Furniro from '../assets/furniro.png'
 import Hotmail from '../assets/outlook.png'
 import Dev from '../assets/dev.png'
 
@@ -58,7 +59,7 @@ function Home() {
                 </div>
 
                 <img src={Dev} alt={Dev} className="w-10 h-10 scale-95" />
-                         
+
             <div className="hidden lg:flex text-base gap-10 text-black dark:text-white font-semibold items-center">
                 <a href="#inicio" className="hover:text-green-500 hover:scale-110">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
                 <a href="#habilidades" className="hover:text-green-500 hover:scale-110">Habilidades<span className="text-green-500 dark:text-green-300">/&gt;</span></a>            
@@ -110,7 +111,7 @@ function Home() {
                     <button className="inline-flex items-center justify-center px-6 text-sm py-1 mt-4 text-white bg-green-600 hover:bg-green-700 rounded-lg sm:w-auto sm:mx-2 sm:mt-0 transition-transform hover:translate-y-2 ease-in-out">
                     <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.1333C2 8.58633 2 6.81283 2.69029 5.45806C3.29749 4.26637 4.26637 3.29749 5.45806 2.69029C6.81283 2 8.58633 2 12.1333 2H19.8667C23.4137 2 25.1872 2 26.5419 2.69029C27.7336 3.29749 28.7025 4.26637 29.3097 5.45806C30 6.81283 30 8.58633 30 12.1333V19.8667C30 23.4137 30 25.1872 29.3097 26.5419C28.7025 27.7336 27.7336 28.7025 26.5419 29.3097C25.1872 30 23.4137 30 19.8667 30H12.1333C8.58633 30 6.81283 30 5.45806 29.3097C4.26637 28.7025 3.29749 27.7336 2.69029 26.5419C2 25.1872 2 23.4137 2 19.8667V12.1333Z" fill="#B30B00"></path> <path d="M24.0401 17.8976C22.7327 16.464 19.1701 17.0912 18.3094 17.1808C17.0891 15.9264 16.2284 14.504 15.8798 13.9664C16.3156 12.6224 16.6642 11.1104 16.6642 9.6768C16.6642 8.3328 16.1413 7 14.7576 7C14.2347 7 13.7989 7.2688 13.5374 7.7168C12.9273 8.792 13.1887 10.9312 14.1475 13.16C13.6245 14.7728 12.753 17.1808 11.7179 19.0512C10.3234 19.5888 7.28369 21.0112 7.02221 22.624C6.93505 23.072 7.10937 23.6096 7.45801 23.8784C7.80665 24.2368 8.24244 24.3264 8.67824 24.3264C10.4977 24.3264 12.328 21.7392 13.6354 19.4096C14.6814 19.0512 16.3265 18.5136 17.9825 18.2448C19.8891 20.0368 21.6323 20.2944 22.5039 20.2944C23.7242 20.2944 24.16 19.7568 24.3234 19.3088C24.5522 18.8832 24.3887 18.256 24.0401 17.8976ZM22.8199 18.7936C22.7327 19.152 22.2969 19.5104 21.5125 19.3312C20.5537 19.0624 19.693 18.6144 18.9958 17.9872C19.6059 17.8976 21.0767 17.7184 22.1226 17.8976C22.4712 17.9872 22.907 18.256 22.8199 18.7936ZM14.3872 8.0752C14.4744 7.896 14.6487 7.8064 14.823 7.8064C15.2588 7.8064 15.3459 8.344 15.3459 8.792C15.2588 9.8672 15.0845 11.0208 14.7358 12.0064C14.0386 10.0464 14.1257 8.6128 14.3872 8.0752ZM14.3 18.1664C14.7358 17.36 15.2588 15.848 15.4331 15.3104C15.8689 16.1168 16.6533 17.0128 17.002 17.4496C17.0891 17.3712 15.5203 17.7184 14.3 18.1664ZM11.3475 20.2272C10.1382 22.1872 9.00509 23.4416 8.30781 23.4416C8.22065 23.4416 8.04634 23.4416 7.95918 23.352C7.87202 23.1728 7.78486 22.9936 7.87202 22.8144C7.95918 22.0976 9.35373 21.112 11.3475 20.2272Z" fill="white"></path> </g></svg>
                     <span className="mx-2">
-                         Curriculum
+                         CV Resumen
                     </span>
                     </button>
                     </a>
@@ -206,41 +207,112 @@ function Home() {
 
         {/* PROYECTOS */}
 
-<div className="h-screen bg-slate-100 dark:bg-black" id="proyectos">
-    <div className="flex flex-col h-screen w-2/3 sm:w-5/6 lg:w-1/2 mx-auto justify-center gap-10 xl:gap-10 2xl:gap-16">
+<div className="h-screen w-full bg-slate-100 dark:bg-black" id="proyectos">
+    <div className="flex flex-col h-screen w-3/4 lg:w-11/12 xl:w-2/3 2xl:w-1/2 mx-auto justify-center gap-4 sm:gap-10 lg:gap-6 2xl:gap-10 ">
 
         <div className="flex justify-center">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
         </div>
 
-        <div className="flex sm:w-1/2 xl:w-1/3 mx-auto">
-            <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-t-lg">
-                    <img className="transform transition-transform hover:scale-110" src={Mini} alt={Mini} />
+        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto ">
+
+            <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
+                <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
+                    <img className="transform transition-transform hover:scale-110 lg:w-72 lg:h-56 xl:w-96 xl:h-60" src={Mini} alt={Mini} />
                 </a>
-                <div className="p-5">
-                    <a href="https://kazali-store-blue.vercel.app/" target="_autoblank">
-                        <h5 className="mb-2 sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">E-Commerce Gamer</h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Comercio parte de PC y otros, pensado en el publico Gamer.</p>
-                    <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Demostracion
+
+                <div className="p-3 lg:p-5 lg:h-52 lg:w-6/7">
+                    
+                        <h5 className="mb-2 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Comercio Gamer</h5>
+                        
+                    <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio parte de PC y otros, pensado en el publico Gamer.</p>
+                    <div className="flex gap-4">
+                        <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Demo
+                            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/JoseSanchez90/ProyectoFinal" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            GitHub
                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div className="flex flex-row my-4 gap-2">
+                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" strokeWidth="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
+
+                        <div className="flex w-8 h-8">
+                            <img src={Tail} alt={Tail} />
+                        </div>
+
+                        <div className="flex  w-8 h-8">
+                        <img src={Fire} alt={Fire} />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>  
 
+        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto">
+
+            <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
+                <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
+                    <img className="transform transition-transform hover:scale-110 w-96 h-56 lg:w-72 lg:h-56 xl:w-96 xl:h-60" src={Furniro} alt={Furniro} />
+                </a>
+
+                <div className="p-3 lg:p-5 lg:h-52 lg:w-6/7">
+                    
+                        <h5 className="mb-2 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Comercio Muebles</h5>
+                        
+                    <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio para venta de muebles, plantilla con diseño moderno.</p>
+                    <div className="flex gap-4">
+                        <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Demo
+                            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/JoseSanchez90/ProyectoFinal" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            GitHub
+                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div className="flex flex-row my-4 gap-2">
+                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
+
+                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#264de4" d="M72 460L30 0h451l-41 460-184 52"></path><path fill="#2965f1" d="M256 37V472l149-41 35-394"></path><path fill="#ebebeb" d="m114 94h142v56H119m5 58h132v57H129m3 28h56l4 45 64 17v59L139 382"></path><path fill="#ffffff" d="m256 208v57h69l-7 73-62 17v59l115-32 26-288H256v56h80l-5.5 58Z"></path></g></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" strokeWidth="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
+
+                        <div className="flex w-8 h-8">
+                            <img src={Tail} alt={Tail} />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+
     </div>
 </div>
 
-        <div className="h-[20rem] -mt-20 flex flex-col items-center backdrop-blur-lg bg-slate-100 dark:bg-black" >
+        {/* <div className="mt-24 sm:-mt-40 lg:-mt-12 flex flex-col bg-slate-100 items-center backdrop-blur-lg dark:bg-black" >
             <a href="#contacto" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
-        </div>
+        </div> */}
+
 
     {/* CONTACTO */}
 
@@ -257,11 +329,11 @@ function Home() {
                 <p className="text-black dark:text-white font-semibold">Gmail</p>
             </a>
             
-            <a href="mailto:josesancheztrujillo90@hotmail.com" target="_autoblank" className="text-center hover:animate-rotate-y">
-                <button className="">
-                    <img src={Hotmail} alt={Hotmail} className="w-16" />
+            <a href="https://t.me/josesanchezt" target="_autoblank" className="text-center hover:animate-rotate-y">
+                <button>
+                    <svg fill="#0a89ff" width="64px" height="64px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#0a89ff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>telegram</title> <path d="M22.122 10.040c0.006-0 0.014-0 0.022-0 0.209 0 0.403 0.065 0.562 0.177l-0.003-0.002c0.116 0.101 0.194 0.243 0.213 0.403l0 0.003c0.020 0.122 0.031 0.262 0.031 0.405 0 0.065-0.002 0.129-0.007 0.193l0-0.009c-0.225 2.369-1.201 8.114-1.697 10.766-0.21 1.123-0.623 1.499-1.023 1.535-0.869 0.081-1.529-0.574-2.371-1.126-1.318-0.865-2.063-1.403-3.342-2.246-1.479-0.973-0.52-1.51 0.322-2.384 0.221-0.23 4.052-3.715 4.127-4.031 0.004-0.019 0.006-0.040 0.006-0.062 0-0.078-0.029-0.149-0.076-0.203l0 0c-0.052-0.034-0.117-0.053-0.185-0.053-0.045 0-0.088 0.009-0.128 0.024l0.002-0.001q-0.198 0.045-6.316 4.174c-0.445 0.351-1.007 0.573-1.619 0.599l-0.006 0c-0.867-0.105-1.654-0.298-2.401-0.573l0.074 0.024c-0.938-0.306-1.683-0.467-1.619-0.985q0.051-0.404 1.114-0.827 6.548-2.853 8.733-3.761c1.607-0.853 3.47-1.555 5.429-2.010l0.157-0.031zM15.93 1.025c-8.302 0.020-15.025 6.755-15.025 15.060 0 8.317 6.742 15.060 15.060 15.060s15.060-6.742 15.060-15.060c0-8.305-6.723-15.040-15.023-15.060h-0.002q-0.035-0-0.070 0z"></path> </g></svg>
                 </button>
-                <p className="text-black dark:text-white font-semibold">Hotmail</p>
+                <p className="text-black dark:text-white font-semibold">Telegram</p>
             </a>
             
             <a href="https://www.linkedin.com/in/josesanchez90/" target="_autoblank" className="text-center hover:animate-rotate-y">
