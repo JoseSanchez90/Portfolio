@@ -94,7 +94,7 @@ function Home() {
                 <h3 className="text-lg md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4">
                     FRONT-END JR
                 </h3>
-                <p className="text-sm md:text-lg block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Comenzando en el campo del desarrollo web, estoy realizando proyectos y estudiando mas lenguajes, he aprendido HTML5, CSS3, Javascript y framework ReactJS, librerias como Bootstrap y Tailwind.</p>
+                <p className="text-sm md:text-lg block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Entusiasta del desarrollo web con experiencia en HTML5, CSS3, Javascript y ReactJS, además de librerías como Bootstrap y Tailwind. Apasionado por crear experiencias digitales de calidad y siempre proactivo en la búsqueda de nuevos desafíos.</p>
 
                 <div className="mt-6 sm:-mx-2 mx-20">
                     
