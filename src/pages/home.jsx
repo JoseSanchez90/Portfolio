@@ -207,7 +207,7 @@ function Home() {
             <h1 className="text-2xl sm:text-3xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
         </div>
 
-        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto ">
+        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto shadow-2xl rounded-lg dark:shadow-[5px_5px_20px_1px_rgba(255,255,255,0.7)]">
 
             <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
                 <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
@@ -253,7 +253,7 @@ function Home() {
             </div>
         </div>  
 
-        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto">
+        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto shadow-2xl rounded-lg dark:shadow-[5px_5px_20px_1px_rgba(255,255,255,0.7)]">
 
             <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
                 <a href="https://furniro-ashy.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
