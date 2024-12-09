@@ -1,15 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+import rippleui from "rippleui";
+import tailwindcssAnimated from "tailwindcss-animated";
+import flowbitePlugin from "flowbite/plugin";
+
 export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}","./node_modules/flowbite/**/*.js"],
-  "darkMode" : "class",
+  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/flowbite/**/*.js"],
+  darkMode: "class",
   theme: {
     extend: {},
   },
   plugins: [
-    require("rippleui"),
-    require('tailwindcss-animated'),
-    require('flowbite/plugin'),
-   ], 
-  
-}
-
+    rippleui,
+    tailwindcssAnimated,
+    flowbitePlugin,
+  ],
+};
