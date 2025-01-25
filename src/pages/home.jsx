@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Profile from '../assets/perfil.jpg'
 import Tail from '../assets/Tailwind.png'
 import Boot from '../assets/Bootstrap.png'
 import Fire from '../assets/Firebase.png'
-import Mini from '../assets/miniatura.png'
-import Furniro from '../assets/furniro.png'
-//import Hotmail from '../assets/outlook.png'
 import Dev from '../assets/dev.png'
+import MySwiper from './MySwiper'
 
 function Home() {
 
-    
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);   
+
     const [theme, setTheme] = useState(() => {
         if(window.matchMedia("(prefers-color-scheme: dark)").matches){
             return "dark";
         }
         return "light";
     })
+
+    const menuRef = useRef(null);
 
     // CAMBIAR MODO DARK / LIGHT
     useEffect(()=> {
@@ -31,7 +32,20 @@ function Home() {
         setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
     }
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Cerrar menú al hacer clic fuera del mismo
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
     
   return (
 
@@ -43,17 +57,17 @@ function Home() {
 
             <div className="w-[90%] md:w-full flex justify-between animate-fade-down">
 
-                <div className=" lg:hidden ">
+                <div className="md:hidden ">
                     <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex items-center animate-fade-down" tabIndex="0">
-                    <svg width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="style=fill"> <g id="menu-hotdog"> <path id="Subtract" fillRule="evenodd" clipRule="evenodd" d="M7.25 1.25C3.93629 1.25 1.25 3.93629 1.25 7.25V16.75C1.25 20.0637 3.93629 22.75 7.25 22.75H16.75C20.0637 22.75 22.75 20.0637 22.75 16.75V7.25C22.75 3.93629 20.0637 1.25 16.75 1.25H7.25ZM6.69231 7C6.44803 7 6.25 7.33579 6.25 7.75C6.25 8.16421 6.44803 8.5 6.69231 8.5H17.3077C17.552 8.5 17.75 8.16421 17.75 7.75C17.75 7.33579 17.552 7 17.3077 7H6.69231ZM4.25 12.25C4.25 11.8358 4.51691 11.5 4.84615 11.5H19.1538C19.4831 11.5 19.75 11.8358 19.75 12.25C19.75 12.6642 19.4831 13 19.1538 13H4.84615C4.51691 13 4.25 12.6642 4.25 12.25ZM6.69231 16C6.44803 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.44803 17.5 6.69231 17.5H17.3077C17.552 17.5 17.75 17.1642 17.75 16.75C17.75 16.3358 17.552 16 17.3077 16H6.69231Z" fill="#169C5B"></path> </g> </g> </g></svg>
+                    <svg width="38px" height="38px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#00e60f" fillRule="evenodd" d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"></path> </g></svg>
                     </button>
 
                     {isMobileMenuOpen && (
-                        <div className="absolute z-50 flex flex-col w-1/3 sm:w-1/4 justify-start text-white font-bold mt-3 bg-gray-700 rounded-md shadow-lg animate-fade-down">
-                            <a tabIndex="-1" href="#inicio" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Inicio</a>
-                            <a tabIndex="-1" href="#habilidades" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Habilidades</a>
-                            <a tabIndex="-1" href="#proyectos" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Proyectos</a>
-                            <a tabIndex="-1" href="#footer" className="dropdown-item text-sm hover:text-gray-900 py-2 px-4">Contacto</a>
+                        <div ref={menuRef} className="menu-container absolute z-50 flex flex-col w-1/3 sm:w-1/4 justify-start text-white font-bold mt-3 bg-gray-700 rounded-md shadow-lg animate-fade-down">
+                            <a href="#inicio" className="dropdown-item text-sm hover:bg-white hover:text-gray-900 py-2 px-4" onClick={() => setIsMobileMenuOpen(false)}>Inicio</a>
+                            <a href="#habilidades" className="dropdown-item text-sm hover:bg-white hover:text-gray-900 py-2 px-4" onClick={() => setIsMobileMenuOpen(false)}>Habilidades</a>
+                            <a href="#proyectos" className="dropdown-item text-sm hover:bg-white hover:text-gray-900 py-2 px-4" onClick={() => setIsMobileMenuOpen(false)}>Proyectos</a>
+                            <a href="#contacto" className="dropdown-item text-sm hover:bg-white hover:text-gray-900 py-2 px-4" onClick={() => setIsMobileMenuOpen(false)}>Contacto</a>
                         </div>
                     )}
                 </div>
@@ -64,7 +78,7 @@ function Home() {
                 <a href="#inicio" className="hover:text-green-500 hover:scale-110 duration-200">Inicio<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
                 <a href="#habilidades" className="hover:text-green-500 hover:scale-110 duration-200">Habilidades<span className="text-green-500 dark:text-green-300 hover:duration-300">/&gt;</span></a>            
                 <a href="#proyectos" className="hover:text-green-500 hover:scale-110 duration-200">Proyectos<span className="text-green-500 dark:text-green-300">/&gt;</span></a>  
-                <a href="#footer" className="hover:text-green-500 hover:scale-110 duration-200">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
+                <a href="#contacto" className="hover:text-green-500 hover:scale-110 duration-200">Contacto<span className="text-green-500 dark:text-green-300">/&gt;</span></a>
                 <button className="flex hover:scale-110 md:hover:scale-125 duration-200 focus:outline-none rounded-full dark:bg-white bg-slate-800 p-1 dark:shadow-slate-400 shadow-zinc-900 shadow-lg" onClick={handleChangeTheme}>
                 <svg width="42px" height="42px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="nightModeIconTitle" stroke="#00b803" strokeWidth="1.704" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="nightModeIconTitle">Night Mode</title> <path d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path> <path d="M15.899 12.899a4 4 0 0 1-4.797-4.797A4.002 4.002 0 0 0 12 16c1.9 0 3.49-1.325 3.899-3.101z"></path> <path d="M12 5V3M12 21v-2"></path> <path d="M5 12H2h3zM22 12h-3 3zM16.95 7.05L19.07 4.93 16.95 7.05zM4.929 19.071L7.05 16.95 4.93 19.07zM16.95 16.95l2.121 2.121-2.121-2.121zM4.929 4.929L7.05 7.05 4.93 4.93z"></path> </g></svg>
                 </button>
@@ -73,7 +87,7 @@ function Home() {
             
 
                 <button className="md:hidden flex hover:scale-110 md:hover:scale-125 duration-200 focus:outline-none rounded-full dark:bg-white bg-slate-800 p-1 dark:shadow-slate-400 shadow-zinc-900 shadow-lg" onClick={handleChangeTheme}>
-                <svg width="42px" height="42px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="nightModeIconTitle" stroke="#00b803" strokeWidth="1.704" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="nightModeIconTitle">Night Mode</title> <path d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path> <path d="M15.899 12.899a4 4 0 0 1-4.797-4.797A4.002 4.002 0 0 0 12 16c1.9 0 3.49-1.325 3.899-3.101z"></path> <path d="M12 5V3M12 21v-2"></path> <path d="M5 12H2h3zM22 12h-3 3zM16.95 7.05L19.07 4.93 16.95 7.05zM4.929 19.071L7.05 16.95 4.93 19.07zM16.95 16.95l2.121 2.121-2.121-2.121zM4.929 4.929L7.05 7.05 4.93 4.93z"></path> </g></svg>
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="nightModeIconTitle" stroke="#00b803" strokeWidth="1.704" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="nightModeIconTitle">Night Mode</title> <path d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path> <path d="M15.899 12.899a4 4 0 0 1-4.797-4.797A4.002 4.002 0 0 0 12 16c1.9 0 3.49-1.325 3.899-3.101z"></path> <path d="M12 5V3M12 21v-2"></path> <path d="M5 12H2h3zM22 12h-3 3zM16.95 7.05L19.07 4.93 16.95 7.05zM4.929 19.071L7.05 16.95 4.93 19.07zM16.95 16.95l2.121 2.121-2.121-2.121zM4.929 4.929L7.05 7.05 4.93 4.93z"></path> </g></svg>
                 </button>
 
             </div>
@@ -82,24 +96,24 @@ function Home() {
 
     {/*     CONTENEDOR DESCRIPCION Y FOTO DE PERFIL      */}
 
-        <div id="inicio" className="container sm:justify-center lg:w-3/4 xl:w-3/4 2xl:w-2/3 h-[90%] xl:h-[90%] flex flex-col md:flex-row items-center pt-16 sm:pt-0 px-10 mx-auto xl:flex-row animate-fade-right sm:gap-10">
+        <div id="inicio" className="container sm:justify-center lg:w-3/4 xl:w-3/4 2xl:w-2/3 h-[90%] xl:h-[90%] flex flex-col md:flex-row items-center md:pt-10 pt-16  px-10 mx-auto xl:flex-row animate-fade-right sm:gap-10">
             
             <div className="flex flex-col items-center md:items-start">
-                <h2 className="text-lg md:text-2xl font-bold tracking-tight text-emerald-600 xl:text-3xl mt-4">
+                <h2 className="text-xl md:text-2xl md:font-bold tracking-tight text-emerald-600 xl:text-3xl mt-4 px-1">
                     JOSE SANCHEZ TRUJILLO
                 </h2>
-                <h3 className="text-lg md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mt-4">
+                <h3 className="text-base md:text-2xl md:font-bold tracking-tight text-black dark:text-white xl:text-3xl mt-4 px-1">
                     DESARROLLADOR WEB
                 </h3>
-                <h3 className="text-lg md:text-2xl font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4">
+                <h3 className="text-base md:text-2xl md:font-bold tracking-tight text-black dark:text-white xl:text-3xl mb-4 px-1">
                     FRONT-END JR
                 </h3>
-                <p className="text-sm md:text-lg block max-w-2xl md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 font-semibold">Desarrollador web Junior con experiencia en HTML5, CSS3, Javascript y ReactJS, además de librerías como Bootstrap y Tailwind. Apasionado por crear experiencias digitales de calidad y siempre proactivo en la búsqueda de nuevos desafíos.</p>
+                <p className="text-xs md:text-lg block md:max-w-2xl text-center md:text-start xl:text-left text-zinc-600 dark:text-zinc-400 md:font-semibold px-1 py-2">La experiencia que tengo es con el aprendizaje realizando algunos proyectos, creando webs con HTML5, CSS3, Javascript y ReactJS, además de librerías como Bootstrap y Tailwind. Apasionado por crear experiencias digitales de calidad y siempre proactivo en la búsqueda de nuevos desafíos.</p>
 
-                <div className="mt-6 sm:-mx-2 mx-20">
+                <div className="flex flex-row pt-5 gap-5 items-center">
                     
                     <a href="https://api.whatsapp.com/send?phone=51960041583" target="_blank">
-                    <button className="inline-flex items-center justify-center px-4 text-sm py-1 text-white bg-gray-700 hover:bg-gray-800 rounded-lg sm:w-auto sm:mx-2 transition-transform hover:translate-y-2 ease-in-out">
+                    <button className="inline-flex items-center justify-center px-4 text-sm py-1 text-white bg-gray-700 hover:bg-gray-800 rounded-lg sm:w-auto transition-transform hover:translate-y-2 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-label="WhatsApp" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#25d366" stroke="#ffffff" strokeWidth="26" d="M123 393l14-65a138 138 0 1150 47z"></path><path fill="#ffffff" d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"></path></g></svg>
                         <span className="mx-2">
                             Conversemos
@@ -108,7 +122,7 @@ function Home() {
                     </a>
                     
                     <a href="https://drive.google.com/file/d/1Iq0jq22Cc68lSqAfrp5g7vvHXzpgbJ3N/view?usp=drive_link" target="_blank">
-                    <button className="inline-flex items-center justify-center px-6 text-sm py-1 text-white bg-gray-700 hover:bg-gray-800 rounded-lg sm:w-auto sm:mx-2 transition-transform hover:translate-y-2 ease-in-out mt-4 lg:mt-0">
+                    <button className="inline-flex items-center justify-center px-4 text-sm py-1 text-white bg-gray-700 hover:bg-gray-800 rounded-lg sm:w-auto transition-transform hover:translate-y-2 ease-in-out">
                     <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.1333C2 8.58633 2 6.81283 2.69029 5.45806C3.29749 4.26637 4.26637 3.29749 5.45806 2.69029C6.81283 2 8.58633 2 12.1333 2H19.8667C23.4137 2 25.1872 2 26.5419 2.69029C27.7336 3.29749 28.7025 4.26637 29.3097 5.45806C30 6.81283 30 8.58633 30 12.1333V19.8667C30 23.4137 30 25.1872 29.3097 26.5419C28.7025 27.7336 27.7336 28.7025 26.5419 29.3097C25.1872 30 23.4137 30 19.8667 30H12.1333C8.58633 30 6.81283 30 5.45806 29.3097C4.26637 28.7025 3.29749 27.7336 2.69029 26.5419C2 25.1872 2 23.4137 2 19.8667V12.1333Z" fill="#B30B00"></path> <path d="M24.0401 17.8976C22.7327 16.464 19.1701 17.0912 18.3094 17.1808C17.0891 15.9264 16.2284 14.504 15.8798 13.9664C16.3156 12.6224 16.6642 11.1104 16.6642 9.6768C16.6642 8.3328 16.1413 7 14.7576 7C14.2347 7 13.7989 7.2688 13.5374 7.7168C12.9273 8.792 13.1887 10.9312 14.1475 13.16C13.6245 14.7728 12.753 17.1808 11.7179 19.0512C10.3234 19.5888 7.28369 21.0112 7.02221 22.624C6.93505 23.072 7.10937 23.6096 7.45801 23.8784C7.80665 24.2368 8.24244 24.3264 8.67824 24.3264C10.4977 24.3264 12.328 21.7392 13.6354 19.4096C14.6814 19.0512 16.3265 18.5136 17.9825 18.2448C19.8891 20.0368 21.6323 20.2944 22.5039 20.2944C23.7242 20.2944 24.16 19.7568 24.3234 19.3088C24.5522 18.8832 24.3887 18.256 24.0401 17.8976ZM22.8199 18.7936C22.7327 19.152 22.2969 19.5104 21.5125 19.3312C20.5537 19.0624 19.693 18.6144 18.9958 17.9872C19.6059 17.8976 21.0767 17.7184 22.1226 17.8976C22.4712 17.9872 22.907 18.256 22.8199 18.7936ZM14.3872 8.0752C14.4744 7.896 14.6487 7.8064 14.823 7.8064C15.2588 7.8064 15.3459 8.344 15.3459 8.792C15.2588 9.8672 15.0845 11.0208 14.7358 12.0064C14.0386 10.0464 14.1257 8.6128 14.3872 8.0752ZM14.3 18.1664C14.7358 17.36 15.2588 15.848 15.4331 15.3104C15.8689 16.1168 16.6533 17.0128 17.002 17.4496C17.0891 17.3712 15.5203 17.7184 14.3 18.1664ZM11.3475 20.2272C10.1382 22.1872 9.00509 23.4416 8.30781 23.4416C8.22065 23.4416 8.04634 23.4416 7.95918 23.352C7.87202 23.1728 7.78486 22.9936 7.87202 22.8144C7.95918 22.0976 9.35373 21.112 11.3475 20.2272Z" fill="white"></path> </g></svg>
                         <span className="mx-1.5">
                             CV/Resume
@@ -126,7 +140,7 @@ function Home() {
     </div>
 
     
-        <div className="h-[20rem] flex flex-col items-center bg-slate-100 dark:bg-slate-950" >
+        <div className="h-[10rem] flex flex-col items-center bg-slate-100 dark:bg-slate-950" >
             <a href="#habilidades" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center" >
                 <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
@@ -135,8 +149,8 @@ function Home() {
     {/* LENGUAJES, LIBRERIAS Y FRAMEWORKS */}
 
     <div className=" bg-slate-100 dark:bg-slate-950" id="habilidades">
-        <div className="h-screen w-full">
-            <div className="lg:w-5/6 xl:w-3/4 h-[100vh] sm:h-[90%] lg:h-[85%] xl:h-[90%] flex flex-col px-10 mx-auto text-center justify-center animate-fade-right gap-10 sm:gap-20 xl:gap-20">
+        <div className="h-full w-full">
+            <div className="w-full h-screen flex flex-col px-10 md:px-40 gap-10 md:gap-20 text-center justify-center animate-fade-right">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">
                     LENGUAJES, LIBRERIAS Y FRAMEWORKS
                 </h3>
@@ -208,120 +222,24 @@ function Home() {
 
         {/* PROYECTOS */}
 
-<div className="h-screen w-full bg-slate-100 dark:bg-slate-950" id="proyectos">
-    <div className="flex flex-col h-screen w-3/4 lg:w-11/12 xl:w-2/3 2xl:w-1/2 mx-auto justify-center gap-4 sm:gap-10 lg:gap-6 2xl:gap-10 pt-40 sm:pt-0">
+<div className="h-full w-full bg-slate-100 dark:bg-slate-950" id="proyectos">
 
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-48">
             <h1 className="text-2xl sm:text-3xl lg:text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl">PROYECTOS</h1>
         </div>
 
-        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto shadow-2xl rounded-lg dark:shadow-[5px_5px_20px_1px_rgba(255,255,255,0.7)]">
-
-            <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
-                <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
-                    <img className="transform transition-transform hover:scale-110 lg:w-72 lg:h-56 xl:w-96 xl:h-60" src={Mini} alt={Mini} />
-                </a>
-
-                <div className="p-3 lg:p-5 lg:h-52 lg:w-6/7">
-                    
-                        <h5 className="mb-2 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Comercio Gamer</h5>
-                        
-                    <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio parte de PC y otros, pensado en el publico Gamer.</p>
-                    <div className="flex gap-4">
-                        <a href="https://kazali-store-blue.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-110 duration-200">
-                            Demo
-                            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/JoseSanchez90/ProyectoFinal" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 hover:scale-110 duration-200">
-                            GitHub
-                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div className="flex flex-row my-4 gap-2">
-                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" strokeWidth="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
-
-                        <div className="flex w-8 h-8">
-                            <img src={Tail} alt={Tail} />
-                        </div>
-
-                        <div className="flex  w-8 h-8">
-                        <img src={Fire} alt={Fire} />
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>  
-
-        <div className="flex sm:w-11/12 lg:w-2/3 xl:w-4/5 mx-auto shadow-2xl rounded-lg dark:shadow-[5px_5px_20px_1px_rgba(255,255,255,0.7)]">
-
-            <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col sm:flex-row">
-                <a href="https://furniro-ashy.vercel.app/" target="_autoblank" className="block overflow-hidden rounded-l-lg">
-                    <img className="transform transition-transform hover:scale-110 w-96 h-56 lg:w-72 lg:h-56 xl:w-96 xl:h-60" src={Furniro} alt={Furniro} />
-                </a>
-
-                <div className="p-3 lg:p-5 lg:h-52 lg:w-6/7">
-                    
-                        <h5 className="mb-2 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Comercio Muebles</h5>
-                        
-                    <p className="mb-3 text-sm lg:text-base font-normal text-gray-700 dark:text-gray-400">Comercio para venta de muebles, plantilla con diseño moderno.</p>
-                    <div className="flex gap-4">
-                        <a href="https://furniro-ashy.vercel.app/" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-110 duration-200">
-                            Demo
-                            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/JoseSanchez90/Ecommerce-02" target="_autoblank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 hover:scale-110 duration-200">
-                            GitHub
-                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div className="flex flex-row my-4 gap-2">
-                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e34f26" d="M71 460L30 0h451l-41 460-185 52"></path><path fill="#ef652a" d="M256 472l149-41 35-394H256"></path><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z"></path><path fill="#ffffff" d="M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z"></path></g></svg>
-
-                        <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3" role="img" viewBox="0 0 512 512" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#264de4" d="M72 460L30 0h451l-41 460-184 52"></path><path fill="#2965f1" d="M256 37V472l149-41 35-394"></path><path fill="#ebebeb" d="m114 94h142v56H119m5 58h132v57H129m3 28h56l4 45 64 17v59L139 382"></path><path fill="#ffffff" d="m256 208v57h69l-7 73-62 17v59l115-32 26-288H256v56h80l-5.5 58Z"></path></g></svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="React" role="img" viewBox="0 0 512 512" width="32px" height="32px" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#e6e6e6"></rect><circle cx="256" cy="256" r="36" fill="#50b2ce"></circle><path stroke="#50b2ce" strokeWidth="18" fill="none" d="M317.47 291.43a71 183 30 1 0-.05.09zm-122.89.09a183 71 60 1 0-.05-.09zm61.47 35.43a183 71 0 1 0-.1 0z"></path></g></svg>
-
-                        <div className="flex w-8 h-8">
-                            <img src={Tail} alt={Tail} />
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div> 
-
-    </div>
+        <MySwiper />
 </div>
-
-        {/* <div className="mt-24 sm:-mt-40 lg:-mt-12 flex flex-col bg-slate-100 items-center backdrop-blur-lg dark:bg-black" >
-            <a href="#contacto" className="animate-bounce bg-white dark:bg-zinc-800 p-2 w-10 h-10 ring-1 ring-zinc-900 dark:ring-zinc-200/20 shadow-lg rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-emerald-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-            </a>
-        </div> */}
-
 
     {/* CONTACTO */}
 
-<div className="flex bg-slate-100 dark:bg-slate-950 h-screen items-center" id="contacto">
-	<div className="w-[90%] sm:w-[80%] lg:w-[45%] 2xl:w-[35%] flex flex-col gap-16 mx-auto px-6 py-4 rounded-2xl pt-32 sm:pt-0">
+<div className="h-full w-full flex bg-slate-100 dark:bg-slate-950 items-center" id="contacto">
+	<div className="w-full h-full flex flex-col justify-center px-96 gap-20">
+
         <div className="text-center text-3xl 2xl:text-4xl font-bold tracking-tight text-black dark:text-white xl:text-3xl sm:py-1 2xl:py-6">
             <h3>CONTACTO</h3>
         </div>
+
         <div className="grid grid-cols-2 gap-y-10 sm:flex justify-between">
             <a href="mailto:josesancheztrujillo7@gmail.com" target="_autoblank" className="text-center transition-transform hover:-translate-y-5 ease-in-out">
                 <button>
@@ -355,17 +273,19 @@ function Home() {
 	</div>
 </div>
 
-<footer className="h-0" id="footer">
-    
-    <div className="flex py-16 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-slate-950">
-        <div className="hidden sm:flex bg-emerald-600 w-20 mr-4 h-[1px]">
-        </div>
-            <p className="text-xs sm:text-sm w-52 sm:w-full md:text-left text-center font-extralight"> © Perú, Lima - Jose Sanchez. Todos los derechos reservados.</p>
-    </div>
-            <a href="#" className="fixed z-10 origin-bottom-right bottom-5 right-5 justify-center items-center text-emerald-100 dark:text-emerald-300 bg-emerald-400 dark:bg-emerald-600 rounded p-2 hover:scale-110 transition-transform">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-6"><path fillRule="evenodd" clipRule="evenodd" d="M7.14645 2.14645C7.34171 1.95118 7.65829 1.95118 7.85355 2.14645L11.8536 6.14645C12.0488 6.34171 12.0488 6.65829 11.8536 6.85355C11.6583 7.04882 11.3417 7.04882 11.1464 6.85355L8 3.70711L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 3.70711L3.85355 6.85355C3.65829 7.04882 3.34171 7.04882 3.14645 6.85355C2.95118 6.65829 2.95118 6.34171 3.14645 6.14645L7.14645 2.14645Z" fill="currentColor"></path></svg>
-            </a>
-</footer>
+        {/* FOOTER  */}
+
+        <footer className="h-0" id="footer">
+            
+            <div className="flex py-16 sm:py-0 sm:fixed sm:origin-bottom-left sm:bottom-6 sm:left-10 justify-center items-center text-emerald-600 dark:text-emerald-300 sm:-rotate-90 bg-slate-100 dark:bg-slate-950">
+                <div className="hidden sm:flex bg-emerald-600 w-20 mr-4 h-[1px]">
+                </div>
+                    <p className="text-xs sm:text-sm w-52 sm:w-full md:text-left text-center font-extralight"> © Perú, Lima - Jose Sanchez. Derechos reservados.</p>
+            </div>
+                    <a href="#" className="fixed z-10 origin-bottom-right bottom-5 right-5 justify-center items-center text-emerald-100 dark:text-emerald-300 bg-emerald-400 dark:bg-emerald-600 rounded p-2 hover:scale-110 transition-transform">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-6"><path fillRule="evenodd" clipRule="evenodd" d="M7.14645 2.14645C7.34171 1.95118 7.65829 1.95118 7.85355 2.14645L11.8536 6.14645C12.0488 6.34171 12.0488 6.65829 11.8536 6.85355C11.6583 7.04882 11.3417 7.04882 11.1464 6.85355L8 3.70711L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 3.70711L3.85355 6.85355C3.65829 7.04882 3.34171 7.04882 3.14645 6.85355C2.95118 6.65829 2.95118 6.34171 3.14645 6.14645L7.14645 2.14645Z" fill="currentColor"></path></svg>
+                    </a>
+        </footer>
 
     </section>
 
